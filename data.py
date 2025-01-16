@@ -3,6 +3,8 @@ from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
 import matplotlib.pyplot as plt
 
+import torch.nn as nn
+
 def load_MNIST(data_path:str='./data', normalise:bool = True):
     """Function for loading images from the MNIST database.
     
@@ -11,8 +13,8 @@ def load_MNIST(data_path:str='./data', normalise:bool = True):
         normalise (bool): Specifies whether or not the data is normalised.
 
     Returns:
-        training set (DataLoader): The training set returned as a DataLoader
-        validation set (DataLoader): The validation set returned as a DataLoader.
+        train_loader (DataLoader): The training set returned as a DataLoader
+        val_loader (DataLoader): The validation set returned as a DataLoader.
     
     """
 
@@ -27,9 +29,6 @@ def load_MNIST(data_path:str='./data', normalise:bool = True):
     if normalise:
         imgs = torch.stack([img_t for img_t, label in fashionMNIST_unnormalised], dim=3) #stack the images along a new dimension
         imgs_viewed = imgs.view(1, -1)
-
-        #Create the transform tensor for normalising images in the database
-        normalisation_transform_t = transforms.Normalize(imgs_viewed.mean(dim=1), imgs_viewed.std(dim=1))
 
         fashionMNIST_train = datasets.FashionMNIST(
             root=data_path,
@@ -51,7 +50,8 @@ def load_MNIST(data_path:str='./data', normalise:bool = True):
                 ])
         )
 
-        return fashionMNIST_train, fashionMNIST_val
+        train_loader = DataLoader(dataset=fashionMNIST_train, batch_size=64, shuffle=False)
+        val_loader = DataLoader(dataset=fashionMNIST_val, batch_size=64, shuffle=False)
 
     else:
 
@@ -62,4 +62,18 @@ def load_MNIST(data_path:str='./data', normalise:bool = True):
             transform=transforms.Compose(transforms.ToTensor())
         )
 
-        return fashionMNIST_unnormalised, fashionMNIST_val
+        train_loader = DataLoader(dataset=fashionMNIST_unnormalised, batch_size=64, shuffle=False)
+        val_loader = DataLoader(dataset=fashionMNIST_val, batch_size=64, shuffle=False)
+
+
+    
+    return train_loader, val_loader
+    
+
+# train_set, val_set = load_MNIST()
+
+# img_t, label = train_set[0]
+
+# conv = nn.Conv2d(in_channels=1, out_channels=16, kernel_size=3, padding=1)
+
+# output = conv(img_t)

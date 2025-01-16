@@ -38,13 +38,4 @@ def train(model:nn.Module,
 
 
 
-# def validate(model:nn.Module, val_loader:DataLoader):
-#     """Tests model performance after training against a validation set.
-    
-#     Args:
-#         model (nn.Module): The pre-trained model whose performance is to be tested.
-#         val_loader (DataLoader): The validation set, wrapped in a DataLoader, for testing performance.
-    
-#     """
-
-#     for imgs, labels in val_loader:
+        
