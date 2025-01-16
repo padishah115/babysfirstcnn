@@ -47,4 +47,4 @@ def train(model:nn.Module,
     
 #     """
 
-#     for imgs, labels in val
+#     for imgs, labels in val_loader:
