@@ -1,0 +1,1 @@
+This is a basic project, which trains a simple Convolutional Neural Network (CNN) using the FashionMNIST database of pixellated black and white images of clothes. The model's performance is quantified using the FashionMNIST validation set.

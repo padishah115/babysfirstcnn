@@ -30,7 +30,7 @@ class SimpleCNN(nn.Module):
 
         #Fully-connected linear layers
         self.fc1 = nn.Linear(in_features=512, out_features=32) #Reduce features from 512 to 32
-        self.fc2 = nn.Linear(in_features=32, out_features=2) #Reduce further from 32 to 2
+        self.fc2 = nn.Linear(in_features=32, out_features=10) #Reduce further from 32 to 10- the number of categories in FashionMNIST
 
         #Loss function
         self.loss_fn = nn.CrossEntropyLoss()
