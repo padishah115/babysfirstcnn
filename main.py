@@ -2,10 +2,9 @@ import torch
 import torch.optim as optim
 
 import cnn
-from training import train
-from validation import validate
-from data import load_MNIST
-
+from train_and_validate.training import train
+from train_and_validate.validation import validate
+from load_data import load_MNIST
 
 
 def main():
@@ -29,7 +28,7 @@ def main():
 
     print(f"Validation accuracy: {accuracy:.2f}")
 
-    torch.save(myCNN.state_dict(), './model')
+    torch.save(myCNN.state_dict(), '/trained_models/model.pt')
     
 
 
